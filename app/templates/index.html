@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <ul class="row">
+            {% for foto in fotos %}
+            <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                <img src="{{foto.thumb_url}}" data-src-big="{{foto.big_url}}"/>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">         
+                <div class="modal-body">                
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+{% endblock %}
+
