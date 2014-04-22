@@ -30,12 +30,12 @@ def index():
 		search = SKX
 		print "Seearch ELSE = ", search
 
-	count=30
+	count = 30
 	fotos = []
 
 	api = InstagramAPI(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 
-	max_id=0
+	max_id = 0
 	api.tag(search) 
 
 	etiquetadas, next = api.tag_recent_media(count, max_id, search)
@@ -47,4 +47,4 @@ def index():
 		fotos.append(media_dicc)
 
 	return render_template("index.html",
-			fotos = fotos)
+		        	fotos = fotos)
