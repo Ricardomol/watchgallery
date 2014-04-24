@@ -9,6 +9,7 @@ CLIENT_SECRET = '9c02c793fd3f47a4b5415d487cbf7b16'
 SKX = "skx007"
 GSHOCK = "gshock"
 PROTREK = "protrek"
+PANERAI = "panerai"
 
 @app.route('/')
 @app.route('/index')
@@ -26,6 +27,9 @@ def index():
 	elif search_term == PROTREK:
 		search = PROTREK
 		print "Seearch term PROTREK= ", search
+	elif search_term == PANERAI:
+		search = PANERAI
+		print "Seearch term PANERAI= ", search
 	else:
 		search = SKX
 		print "Seearch ELSE = ", search
@@ -41,6 +45,7 @@ def index():
 	etiquetadas, next = api.tag_recent_media(count, max_id, search)
 
 	for media in etiquetadas:
+		print media.caption
 		media_dicc = {}
 		media_dicc['thumb_url'] = media.images['thumbnail'].url
 		media_dicc['big_url'] = media.images['standard_resolution'].url

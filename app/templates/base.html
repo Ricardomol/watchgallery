@@ -1,9 +1,9 @@
 <html>
   <head>
     {% if title %}
-    <title>{{title}} - Watch Gallery</title>
+    <title>{{title}} - The Tough Watch Gallery</title>
     {% else %}
-    <title>Watch Gallery</title>
+    <title>The Tough Watch Gallery</title>
     {% endif %}
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -11,6 +11,9 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+      body{
+        background-color: #f8f8f8;
+      }
       ul {
           padding:0 0 0 0;
           margin:0 0 0 0;
@@ -40,7 +43,7 @@
 
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -49,27 +52,13 @@
       <a class="navbar-brand" href="#">The Tough Watch Gallery</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active" id="seiko-link"><a href="/?search_term=skx007">Seiko 007</a></li>
         <li id="gshock-link"><a href="/?search_term=gshock">G-Shock</a></li>
         <li id="protrek-link"><a href="/?search_term=protrek">Protrek</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Seiko 007</a></li>
-            <li><a href="#">G-Shock</a></li>
-            <li><a href="#">Protrek</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+        <li id="panerai-link"><a href="/?search_term=panerai">Panerai</a></li>
       </ul>
-
-
       <ul class="nav navbar-nav navbar-right">
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
@@ -77,28 +66,18 @@
           </div>
           <button type="submit" class="btn btn-default">Submit</button>
         </form>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-    {% block content %}{% endblock %}
-
-    <div id="footer">
-      <div class="container">
-        <p class="text-muted"><a href="http://www.ricardomol.com" target="_blank">By Ricardo Molina.</a></p>
-      </div>
     </div>
+  </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<div id="footer" style="background-color:#e7e7e7;">
+  <div class="container" style="padding-top:6px;">
+    <p class="text-muted">By <a href="http://www.ricardomol.com" target="_blank">Ricardo Molina</a>.</p>
+  </div>
+</div>
 
   </body>
 
@@ -108,9 +87,9 @@
                   var src = $(this).attr('data-src-big');
                   var img = '<img src="' + src + '" class="img-responsive"/>';
 
-                  var index = $(this).parent('li').index();                   
+                  var index = $(this).parent('li').index();
                   var html = '';
-                  html += img;                
+                  html += img;
                   html += '<div style="height:25px;clear:both;display:block;">';
                   html += '<a class="controls next" href="'+ (index+2) + '">next &raquo;</a>';
                   html += '<a class="controls previous" href="' + (index) + '">&laquo; prev</a>';
@@ -129,13 +108,13 @@
 
           $(document).on('click', 'a.controls', function(){
             var index = $(this).attr('href');
-            var src = $('ul.row li:nth-child('+ index +') img').attr('data-src-big');             
+            var src = $('ul.row li:nth-child('+ index +') img').attr('data-src-big');
             $('.modal-body img').attr('src', src);
 
             var newPrevIndex = parseInt(index) - 1; 
-            var newNextIndex = parseInt(newPrevIndex) + 2; 
+            var newNextIndex = parseInt(newPrevIndex) + 2;
              
-            if($(this).hasClass('previous')){        
+            if($(this).hasClass('previous')){
                 $(this).attr('href', newPrevIndex); 
                 $('a.next').attr('href', newNextIndex);
             }else{
@@ -160,6 +139,12 @@
 
             return false;
           });
+
+          $(document).on('click', 'ul.nav li', function(){
+            $('ul.nav li').removeClass('active');
+            $(this).addClass('active');
+          });
+
     </script>
 
 </html>
