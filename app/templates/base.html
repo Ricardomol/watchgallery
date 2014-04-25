@@ -11,31 +11,35 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      body{
-        background-color: #f8f8f8;
-      }
-      ul {
-          padding:0 0 0 0;
-          margin:0 0 0 0;
-      }
-      ul li.foto {
-          list-style:none;
-          margin-bottom:25px;
-      }
-      ul li.foto img {
-          cursor: pointer;
-      }
-      .controls{
-          width:50px;
-          display:block;
-          font-size:11px;
-          padding-top:8px;
-          font-weight:bold;
-      }
-      .next {
-          float:right;
-          text-align:right;
-      }
+        body {
+            background-color: #f8f8f8;
+        }
+        ul {
+            padding:0 0 0 0;
+            margin:0 0 0 0;
+        }
+        ul li.foto {
+            list-style:none;
+            margin-bottom:25px;
+        }
+        ul li.foto img {
+            cursor: pointer;
+        }
+        .controls {
+            width:50px;
+            display:block;
+            font-size:11px;
+            padding-top:8px;
+            font-weight:bold;
+        }
+        .next {
+            float:right;
+            text-align:right;
+        }
+
+        #footer a {
+            color:grey;
+        }
     </style>
 
   </head>
@@ -98,12 +102,13 @@
 
         var s = getUrlParameter('s');
 
-        if (s.localeCompare('gshock') == 0){
+        if (!s){
+            $('#seiko-link').addClass('active');
+        } else if (s.localeCompare('gshock') == 0){
             $('.li').removeClass('active');
             $('#gshock-link').addClass('active');
         } else if (s.localeCompare('protrek') == 0){
             $('.li').removeClass('active');
-            $('#skx007-link').removeClass('active');
             $('#protrek-link').addClass('active');
         } else if (s.localeCompare('panerai') == 0){
             $('.li').removeClass('active');
@@ -169,10 +174,6 @@
       return false;
     });
 
-        // $(document).on('click', 'ul.nav li', function(){
-        //   $('ul.nav li').removeClass('active');
-        //   $(this).addClass('active');
-        // });
 </script>
 
 </html>
