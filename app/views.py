@@ -34,7 +34,7 @@ def index():
 		search = SKX
 		print "Search ELSE = ", search
 
-	count = 30
+	count = 32
 	fotos = []
 
 	api = InstagramAPI(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
