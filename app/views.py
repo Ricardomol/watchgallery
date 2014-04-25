@@ -15,24 +15,24 @@ PANERAI = "panerai"
 @app.route('/index')
 def index():
 
-	search = ""
-	search_term = request.args.get('search_term', '')
+	s = ""
+	s = request.args.get('s', '')
 
-	if search_term == SKX:
+	if s == SKX:
 		search = SKX
-		print "Search_term SKX = ", search
-	elif search_term == GSHOCK:
+		print "s SKX = ", search
+	elif s == GSHOCK:
 		search = GSHOCK
-		print "Seearch_term GSHOCK = ", search
-	elif search_term == PROTREK:
+		print "s GSHOCK = ", search
+	elif s == PROTREK:
 		search = PROTREK
-		print "Seearch term PROTREK= ", search
-	elif search_term == PANERAI:
+		print "Search term PROTREK= ", search
+	elif s == PANERAI:
 		search = PANERAI
-		print "Seearch term PANERAI= ", search
+		print "Search term PANERAI= ", search
 	else:
 		search = SKX
-		print "Seearch ELSE = ", search
+		print "Search ELSE = ", search
 
 	count = 30
 	fotos = []

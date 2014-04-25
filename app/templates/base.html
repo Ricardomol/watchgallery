@@ -54,10 +54,10 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active" id="seiko-link"><a href="/?search_term=skx007">Seiko 007</a></li>
-        <li id="gshock-link"><a href="/?search_term=gshock">G-Shock</a></li>
-        <li id="protrek-link"><a href="/?search_term=protrek">Protrek</a></li>
-        <li id="panerai-link"><a href="/?search_term=panerai">Panerai</a></li>
+        <li id="seiko-link"><a href="/?s=skx007">Seiko 007</a></li>
+        <li id="gshock-link"><a href="/?s=gshock">G-Shock</a></li>
+        <li id="protrek-link"><a href="/?s=protrek">Protrek</a></li>
+        <li id="panerai-link"><a href="/?s=panerai">Panerai</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <form class="navbar-form navbar-left" role="search">
@@ -81,70 +81,98 @@
 
   </body>
 
-      <script>
-          $(document).ready(function(){
-             $('li img').on('click',function(){
-                  var src = $(this).attr('data-src-big');
-                  var img = '<img src="' + src + '" class="img-responsive"/>';
+<script>
 
-                  var index = $(this).parent('li').index();
-                  var html = '';
-                  html += img;
-                  html += '<div style="height:25px;clear:both;display:block;">';
-                  html += '<a class="controls next" href="'+ (index+2) + '">next &raquo;</a>';
-                  html += '<a class="controls previous" href="' + (index) + '">&laquo; prev</a>';
-                  html += '</div>';
-
-                  $('#myModal').modal();
-                  $('#myModal').on('shown.bs.modal', function(){
-                      $('#myModal .modal-body').html(html);
-                      $('a.controls').trigger('click');
-                  });
-                  $('#myModal').on('hidden.bs.modal', function(){
-                      $('#myModal .modal-body').html('');
-                  });
-             });
-          });
-
-          $(document).on('click', 'a.controls', function(){
-            var index = $(this).attr('href');
-            var src = $('ul.row li:nth-child('+ index +') img').attr('data-src-big');
-            $('.modal-body img').attr('src', src);
-
-            var newPrevIndex = parseInt(index) - 1; 
-            var newNextIndex = parseInt(newPrevIndex) + 2;
-             
-            if($(this).hasClass('previous')){
-                $(this).attr('href', newPrevIndex); 
-                $('a.next').attr('href', newNextIndex);
-            }else{
-                $(this).attr('href', newNextIndex); 
-                $('a.previous').attr('href', newPrevIndex);
+    function getUrlParameter(sParam){
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++){
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam){
+                return sParameterName[1];
             }
+        }
+    }
 
+    $(document).ready(function(){
 
-            var total = $('ul.row li').length + 1; 
-            //hide next button
-            if(total === newNextIndex){
-                $('a.next').hide();
-            }else{
-                $('a.next').show()
-            }            
-            //hide previous button
-            if(newPrevIndex === 0){
-                $('a.previous').hide();
-            }else{
-                $('a.previous').show()
-            }
+        var s = getUrlParameter('s');
+        debugger;
+        if (s.localeCompare('gshock') == 0){
+            $('.li').removeClass('active');
+            $('#gshock-link').addClass('active');
+        } else if (s.localeCompare('protrek') == 0){
+            $('.li').removeClass('active');
+            $('#skx007-link').removeClass('active');
+            $('#protrek-link').addClass('active');
+        } else if (s.localeCompare('panerai') == 0){
+            $('.li').removeClass('active');
+            $('#panerai-link').addClass('active');
+        } else {
+            $('.li').removeClass('active');
+            $('#seiko-link').addClass('active');
+        }
 
-            return false;
-          });
+        $('li img').on('click',function(){
+            var src = $(this).attr('data-src-big');
+            var img = '<img src="' + src + '" class="img-responsive"/>';
 
-          $(document).on('click', 'ul.nav li', function(){
-            $('ul.nav li').removeClass('active');
-            $(this).addClass('active');
-          });
+            var index = $(this).parent('li').index();
+            var html = '';
+            html += img;
+            html += '<div style="height:25px;clear:both;display:block;">';
+            html += '<a class="controls next" href="'+ (index+2) + '">next &raquo;</a>';
+            html += '<a class="controls previous" href="' + (index) + '">&laquo; prev</a>';
+            html += '</div>';
 
-    </script>
+            $('#myModal').modal();
+            $('#myModal').on('shown.bs.modal', function(){
+                $('#myModal .modal-body').html(html);
+                $('a.controls').trigger('click');
+            });
+            $('#myModal').on('hidden.bs.modal', function(){
+                $('#myModal .modal-body').html('');
+            });
+        });
+    });
+
+    $(document).on('click', 'a.controls', function(){
+      var index = $(this).attr('href');
+      var src = $('ul.row li:nth-child('+ index +') img').attr('data-src-big');
+      $('.modal-body img').attr('src', src);
+
+      var newPrevIndex = parseInt(index) - 1; 
+      var newNextIndex = parseInt(newPrevIndex) + 2;
+
+      if($(this).hasClass('previous')){
+          $(this).attr('href', newPrevIndex); 
+          $('a.next').attr('href', newNextIndex);
+      }else{
+          $(this).attr('href', newNextIndex); 
+          $('a.previous').attr('href', newPrevIndex);
+      }
+
+      var total = $('ul.row li').length + 1; 
+      //hide next button
+      if(total === newNextIndex){
+          $('a.next').hide();
+      }else{
+          $('a.next').show()
+      }
+      //hide previous button
+      if(newPrevIndex === 0){
+          $('a.previous').hide();
+      }else{
+          $('a.previous').show()
+      }
+
+      return false;
+    });
+
+        // $(document).on('click', 'ul.nav li', function(){
+        //   $('ul.nav li').removeClass('active');
+        //   $(this).addClass('active');
+        // });
+</script>
 
 </html>
