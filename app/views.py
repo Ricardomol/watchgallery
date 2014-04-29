@@ -47,7 +47,8 @@ def index():
 	for media in etiquetadas:
 		print media.caption
 		media_dicc = {}
-		media_dicc['thumb_url'] = media.images['thumbnail'].url
+		media_dicc['thumb_url'] = media.images['low_resolution'].url
+		# media_dicc['thumb_url'] = media.images['thumbnail'].url
 		media_dicc['big_url'] = media.images['standard_resolution'].url
 		fotos.append(media_dicc)
 
