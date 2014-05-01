@@ -26,15 +26,15 @@ def index():
 		print "s GSHOCK = ", search
 	elif s == PROTREK:
 		search = PROTREK
-		print "Search term PROTREK= ", search
+		print "s PROTREK= ", search
 	elif s == PANERAI:
 		search = PANERAI
-		print "Search term PANERAI= ", search
+		print "s PANERAI= ", search
 	else:
 		search = SKX
-		print "Search ELSE = ", search
+		print "s ELSE = ", search
 
-	count = 30
+	count = 32
 	fotos = []
 
 	api = InstagramAPI(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
@@ -48,7 +48,6 @@ def index():
 		print media.caption
 		media_dicc = {}
 		media_dicc['thumb_url'] = media.images['low_resolution'].url
-		# media_dicc['thumb_url'] = media.images['thumbnail'].url
 		media_dicc['big_url'] = media.images['standard_resolution'].url
 		fotos.append(media_dicc)
 
