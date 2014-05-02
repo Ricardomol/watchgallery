@@ -17,6 +17,7 @@ def index():
 
 	s = ""
 	s = request.args.get('s', '')
+	print "***Request.args = ", request.args.items()
 
 	if s == SKX:
 		search = SKX
@@ -30,6 +31,8 @@ def index():
 	elif s == PANERAI:
 		search = PANERAI
 		print "s PANERAI= ", search
+	elif s != "":
+		search = s
 	else:
 		search = SKX
 		print "s ELSE = ", search
@@ -40,7 +43,7 @@ def index():
 	api = InstagramAPI(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 
 	max_id = 0
-	api.tag(search) 
+	api.tag(search)
 
 	etiquetadas, next = api.tag_recent_media(count, max_id, search)
 

@@ -77,9 +77,9 @@
       <ul class="nav navbar-nav navbar-right">
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" id="search-val" placeholder="Search other watches">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" class="btn btn-default" id="search-btn">Submit</button>
         </form>
       </ul>
     </div>
@@ -151,6 +151,12 @@
             $('#myModal').on('hidden.bs.modal', function(){
                 $('#myModal .modal-body').html('');
             });
+        });
+
+        $('#search-btn').on('click',function(){
+            var search_term = $('#search-val').val();
+            window.location.href = "/?s="+search_term;
+            return false;
         });
     });
 
