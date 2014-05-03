@@ -32,7 +32,7 @@ def index():
 		search = PANERAI
 		print "s PANERAI= ", search
 	elif s != "":
-		search = s
+		search = s.replace(" ", "")
 	else:
 		search = SKX
 		print "s ELSE = ", search
