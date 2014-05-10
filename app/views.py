@@ -10,6 +10,7 @@ SKX = "skx007"
 GSHOCK = "gshock"
 PROTREK = "protrek"
 PANERAI = "panerai"
+TRASER = "traser"
 
 @app.route('/')
 @app.route('/index')
@@ -31,6 +32,9 @@ def index():
 	elif s == PANERAI:
 		search = PANERAI
 		print "s PANERAI= ", search
+	elif s == TRASER:
+		search = TRASER
+		print "s TRASER= ", search
 	elif s != "":
 		search = s.replace(" ", "")
 	else:

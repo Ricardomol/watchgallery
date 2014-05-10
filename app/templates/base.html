@@ -73,6 +73,7 @@
         <li id="gshock-link"><a href="/?s=gshock">G-Shock</a></li>
         <li id="protrek-link"><a href="/?s=protrek">Protrek</a></li>
         <li id="panerai-link"><a href="/?s=panerai">Panerai</a></li>
+        <li id="traser-link"><a href="/?s=traser">Traser</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <form class="navbar-form navbar-left" role="search">
@@ -124,6 +125,9 @@
         } else if (s.localeCompare('panerai') == 0){
             $('.li').removeClass('active');
             $('#panerai-link').addClass('active');
+        } else if (s.localeCompare('traser') == 0){
+            $('.li').removeClass('active');
+            $('#traser-link').addClass('active');
         } else {
             $('.li').removeClass('active');
             $('#seiko-link').addClass('active');
