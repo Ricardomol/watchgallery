@@ -3,10 +3,9 @@
 {% block content %}
     <div class="container">
         <ul class="row">
-            {% set r1 = range(1, 8) | random %}
-            {% set r2 = range(13, 32) | random %}
+            {% set r = range(1, 8) | random %}
             {% for foto in fotos %}
-                {% if loop.index == r1 %}
+                {% if loop.index == r %}
                     <li class="foto col-lg-3 col-md-4 col-sm-6 col-xs-12">
                         <ins class="adsbygoogle"
                             style="display:inline-block;width:200px;height:200px"
@@ -14,26 +13,12 @@
                             data-ad-slot="5437576013">
                         </ins>
                     </li>
-                {% elif loop.index == r2 %}
+                {% else %}
                     <li class="foto col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <ins class="adsbygoogle"
-                             style="display:inline-block;width:200px;height:200px"
-                             data-ad-client="ca-pub-5230413285280043"
-                             data-ad-slot="9299449615">
-                        </ins>
+                        <img src="{{foto.thumb_url}}" data-src-big="{{foto.big_url}}" width="200px"/>
                     </li>
                 {% endif %}
-                <li class="foto col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <img src="{{foto.thumb_url}}" data-src-big="{{foto.big_url}}" width="200px"/>
-                </li>
             {% endfor %}
-            <li class="foto col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:200px;height:200px"
-                     data-ad-client="ca-pub-5230413285280043"
-                     data-ad-slot="7683115619">
-                </ins>
-            </li>
         </ul>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
