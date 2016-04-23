@@ -41,7 +41,7 @@ def index():
 		search = SKX
 		print "s ELSE = ", search
 
-	count = 32
+	count = 33
 	fotos = []
 
 	api = InstagramAPI(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
@@ -58,5 +58,4 @@ def index():
 		media_dicc['big_url'] = media.images['standard_resolution'].url
 		fotos.append(media_dicc)
 
-	return render_template("index.html",
-		        	fotos = fotos)
+	return render_template("index.html", fotos=fotos)
